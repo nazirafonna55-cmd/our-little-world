@@ -1934,31 +1934,71 @@ window.saveBigMood =
 window.deleteMood =
     deleteMood;
 
+
+// ======================================================
+// OUR TIME
+// ======================================================
+
 window.addTimeStory =
+    addTimeStory;
+
+window.saveTimeStory =
     addTimeStory;
 
 window.deleteTimeStory =
     deleteTimeStory;
 
+
+// ======================================================
+// MEMORIES
+// ======================================================
+
 window.addMemory =
+    addMemory;
+
+window.saveMemory =
     addMemory;
 
 window.deleteMemory =
     deleteMemory;
 
+
+// ======================================================
+// PLAYLIST
+// ======================================================
+
 window.addPlaylist =
+    addPlaylist;
+
+window.savePlaylist =
     addPlaylist;
 
 window.deletePlaylist =
     deletePlaylist;
 
+
+// ======================================================
+// LOVE NOTES
+// ======================================================
+
 window.addLoveNote =
+    addLoveNote;
+
+window.saveLoveNote =
     addLoveNote;
 
 window.deleteLoveNote =
     deleteLoveNote;
 
+
+// ======================================================
+// SOMEDAY
+// ======================================================
+
 window.addSomeday =
+    addSomeday;
+
+window.saveSomeday =
     addSomeday;
 
 window.toggleSomeday =
@@ -1967,11 +2007,24 @@ window.toggleSomeday =
 window.deleteSomeday =
     deleteSomeday;
 
+
+// ======================================================
+// OUR CHATS
+// ======================================================
+
 window.addChat =
+    addChat;
+
+window.saveChat =
     addChat;
 
 window.deleteChat =
     deleteChat;
+
+
+// ======================================================
+// SETTINGS
+// ======================================================
 
 window.saveSettings =
     saveSettings;
