@@ -969,3 +969,837 @@ footer {
     }
 
 }
+/* =========================================
+   PLAYLIST CUTE STYLE
+========================================= */
+
+#playlistList {
+    margin-top: 25px;
+}
+
+
+/* KARTU LAGU */
+
+.playlist-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #fff8fc,
+        #fff0f7
+    );
+
+    border: 1px solid #f3d5e4;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(210, 92, 145, 0.08);
+
+    transition: all 0.25s ease;
+}
+
+
+/* EFEK SAAT DISENTUH */
+
+.playlist-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(210, 92, 145, 0.15);
+
+    border-color: #eaa4c5;
+}
+
+
+/* ICON LAGU */
+
+.playlist-cover {
+    min-width: 58px;
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: linear-gradient(
+        135deg,
+        #f5b6d2,
+        #d9c2f0
+    );
+
+    font-size: 27px;
+
+    box-shadow:
+        0 5px 12px rgba(210, 92, 145, 0.15);
+}
+
+
+/* INFORMASI LAGU */
+
+.playlist-info {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.playlist-info h3 {
+    margin: 0 0 5px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #5f4160;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.playlist-info p {
+    margin: 0 0 9px;
+
+    color: #96718e;
+    font-size: 14px;
+}
+
+
+/* TOMBOL BUKA SPOTIFY */
+
+.playlist-open {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #f6d7e6;
+
+    color: #a94476;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+
+.playlist-open:hover {
+    background: #ebafd0;
+
+    color: #7e315b;
+
+    transform: scale(1.03);
+}
+
+
+/* TOMBOL HAPUS */
+
+.playlist-delete {
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #fff;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.08);
+
+    transition: all 0.2s ease;
+}
+
+
+.playlist-delete:hover {
+    background: #ffe1eb;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* BELUM ADA PLAYLIST */
+
+.playlist-empty {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    border-radius: 20px;
+
+    background: #fff8fc;
+
+    border: 1px dashed #e7b6ce;
+}
+
+
+.playlist-empty-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+
+.playlist-empty h3 {
+    margin: 0 0 5px;
+
+    color: #684566;
+}
+
+
+.playlist-empty p {
+    margin: 0;
+
+    color: #a47f99;
+    font-size: 14px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .playlist-item {
+        padding: 15px 45px 15px 14px;
+        gap: 12px;
+    }
+
+    .playlist-cover {
+        min-width: 50px;
+        width: 50px;
+        height: 50px;
+
+        font-size: 23px;
+    }
+
+    .playlist-info h3 {
+        font-size: 16px;
+    }
+
+    .playlist-info p {
+        font-size: 13px;
+    }
+
+}
+/* =====================================================
+   RAPIIKAN SEMUA HASIL DATA
+   STYLE SERAGAM SEPERTI PLAYLIST
+===================================================== */
+
+
+/* =====================================================
+   LOVE NOTES
+===================================================== */
+
+#loveNotesList {
+    margin-top: 25px;
+}
+
+.love-note-item {
+    position: relative;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #fff8fc,
+        #fff0f7
+    );
+
+    border: 1px solid #f3d5e4;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(210, 92, 145, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.love-note-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(210, 92, 145, 0.15);
+
+    border-color: #eaa4c5;
+}
+
+.love-note-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+    color: #5f4160;
+}
+
+.love-note-item p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    color: #806477;
+
+    white-space: pre-wrap;
+}
+
+.love-note-delete {
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.08);
+
+    transition: 0.2s;
+}
+
+.love-note-delete:hover {
+    background: #ffe1eb;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* =====================================================
+   MEMORIES
+===================================================== */
+
+#memoryList {
+    margin-top: 25px;
+}
+
+.memory-item {
+    position: relative;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #f5fffc,
+        #ffffff
+    );
+
+    border: 1px solid #d9eee8;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(90, 150, 135, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.memory-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(90, 150, 135, 0.14);
+}
+
+.memory-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+    color: #4e685f;
+}
+
+.memory-item p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #71877f;
+}
+
+.memory-item small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #9aaca6;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   OUR TIME
+===================================================== */
+
+#timeStoryList {
+    margin-top: 25px;
+}
+
+.time-story-item {
+    position: relative;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #f5f1ff,
+        #ffffff
+    );
+
+    border: 1px solid #e1daf5;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(120, 100, 170, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.time-story-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(120, 100, 170, 0.14);
+}
+
+.time-story-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+    color: #5e517d;
+}
+
+.time-story-item p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #766c8d;
+}
+
+
+/* =====================================================
+   MOOD CHECK
+===================================================== */
+
+#moodList {
+    margin-top: 25px;
+}
+
+.mood-item {
+    position: relative;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #f3faff,
+        #ffffff
+    );
+
+    border: 1px solid #dcecf5;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(100, 160, 190, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.mood-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(100, 160, 190, 0.14);
+}
+
+.mood-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+    color: #526d7c;
+}
+
+.mood-item p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #718692;
+}
+
+
+/* =====================================================
+   SOMEDAY LIST
+===================================================== */
+
+#somedayList {
+    margin-top: 25px;
+}
+
+.someday-item {
+    position: relative;
+
+    padding: 18px 50px 18px 18px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #fffaf0,
+        #ffffff
+    );
+
+    border: 1px solid #f1dfbd;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(180, 140, 80, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.someday-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(180, 140, 80, 0.14);
+}
+
+.someday-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+    color: #796345;
+}
+
+.someday-item p {
+    margin: 0;
+
+    font-size: 14px;
+    color: #927d61;
+}
+
+.someday-item.completed {
+    opacity: 0.65;
+}
+
+.someday-item.completed h3 {
+    text-decoration: line-through;
+}
+
+
+/* =====================================================
+   OUR CHATS
+===================================================== */
+
+#chatList {
+    margin-top: 25px;
+}
+
+.chat-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 16px 50px 16px 16px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #faf5ff,
+        #ffffff
+    );
+
+    border: 1px solid #e5d9ef;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(130, 100, 160, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.chat-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(130, 100, 160, 0.14);
+}
+
+.chat-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f3d9e6;
+
+    font-size: 23px;
+}
+
+.chat-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.chat-info h3 {
+    margin: 0 0 5px;
+
+    font-size: 16px;
+    color: #604d69;
+}
+
+.chat-info p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #88748a;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =====================================================
+   LOVE TODAY
+===================================================== */
+
+#loveTodayList {
+    margin-top: 25px;
+}
+
+.love-today-item {
+    position: relative;
+
+    padding: 18px 20px;
+    margin-bottom: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #fff1f7,
+        #ffffff
+    );
+
+    border: 1px solid #f3d5e4;
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 15px rgba(210, 92, 145, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.love-today-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(210, 92, 145, 0.14);
+}
+
+.love-today-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.love-today-date {
+    font-size: 14px;
+    color: #7d6472;
+}
+
+.love-today-percent {
+    font-size: 23px;
+    font-weight: bold;
+
+    color: #d45d8c;
+}
+
+.love-today-note {
+    margin-top: 10px;
+
+    padding: 10px 12px;
+
+    background: #fff8fb;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    color: #806474;
+}
+
+
+/* =====================================================
+   SEMUA TOMBOL HAPUS
+===================================================== */
+
+#playlistList button,
+#loveNotesList button,
+#memoryList button,
+#timeStoryList button,
+#moodList button,
+#somedayList button,
+#chatList button,
+#loveTodayList button {
+
+    border: none;
+
+    background: #fff;
+
+    color: #c94d7e;
+
+    padding: 7px 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+
+    margin-top: 10px;
+}
+
+#playlistList button:hover,
+#loveNotesList button:hover,
+#memoryList button:hover,
+#timeStoryList button:hover,
+#moodList button:hover,
+#somedayList button:hover,
+#chatList button:hover,
+#loveTodayList button:hover {
+
+    background: #ffe1eb;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   HASIL DATA KOSONG
+===================================================== */
+
+#playlistList > p,
+#loveNotesList > p,
+#memoryList > p,
+#timeStoryList > p,
+#moodList > p,
+#somedayList > p,
+#chatList > p,
+#loveTodayList > p {
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 20px;
+
+    background: #fff8fc;
+
+    border: 1px dashed #e7b6ce;
+
+    border-radius: 20px;
+
+    color: #a47f99;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .love-note-item,
+    .memory-item,
+    .time-story-item,
+    .mood-item,
+    .someday-item,
+    .love-today-item {
+
+        padding: 15px;
+    }
+
+    .love-note-item h3,
+    .memory-item h3,
+    .time-story-item h3,
+    .mood-item h3,
+    .someday-item h3 {
+
+        font-size: 16px;
+    }
+
+    .love-note-item p,
+    .memory-item p,
+    .time-story-item p,
+    .mood-item p,
+    .someday-item p,
+    .love-today-note {
+
+        font-size: 13px;
+    }
+
+    .chat-item {
+        padding: 14px;
+    }
+
+}
