@@ -879,6 +879,116 @@ button{
 
 }
 </style>
+<style>
+/* ===== PLAYLIST CUTE ===== */
+
+#playlistList {
+    margin-top: 25px !important;
+}
+
+#playlistList .playlist-item {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    padding: 18px 55px 18px 18px !important;
+    margin: 0 0 14px 0 !important;
+    background: linear-gradient(135deg, #fff8fc, #fff0f7) !important;
+    border: 1px solid #f3c9df !important;
+    border-radius: 22px !important;
+    box-shadow: 0 6px 18px rgba(210,92,145,.10) !important;
+    transition: .25s ease !important;
+}
+
+#playlistList .playlist-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(210,92,145,.18) !important;
+}
+
+#playlistList .playlist-cover {
+    flex-shrink: 0 !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg,#f4a8cb,#cdb9eb) !important;
+    font-size: 28px !important;
+}
+
+#playlistList .playlist-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+#playlistList .playlist-info h3 {
+    margin: 0 0 5px !important;
+    color: #65415f !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+#playlistList .playlist-info p {
+    margin: 0 0 10px !important;
+    color: #96718e !important;
+    font-size: 14px !important;
+}
+
+#playlistList .playlist-open {
+    display: inline-block !important;
+    padding: 7px 14px !important;
+    border-radius: 20px !important;
+    background: #ed75aa !important;
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+#playlistList .playlist-open:hover {
+    background: #d95c94 !important;
+}
+
+#playlistList .playlist-delete {
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 36px !important;
+    height: 36px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: #ffe4ef !important;
+    cursor: pointer !important;
+    font-size: 15px !important;
+}
+
+#playlistList .playlist-delete:hover {
+    background: #ffc9df !important;
+}
+
+#playlistList .playlist-empty {
+    text-align: center !important;
+    padding: 35px !important;
+    border-radius: 20px !important;
+    background: #fff8fc !important;
+    border: 1px dashed #e6aecb !important;
+}
+
+#playlistList .playlist-empty-icon {
+    font-size: 40px !important;
+    margin-bottom: 8px !important;
+}
+
+#playlistList .playlist-empty h3 {
+    color: #684566 !important;
+}
+
+#playlistList .playlist-empty p {
+    color: #a47f99 !important;
+}
+</style>
 </head>
 
 
@@ -1018,8 +1128,11 @@ button{
 
 <!-- ================= OUR TIME ================= -->
 
-<div class="card time-card">
-
+<div
+    class="card time-card"
+    onclick="openPage('our-time')"
+    style="cursor:pointer;"
+>
     <h3>
         ⏰ &nbsp; Our Time
     </h3>
@@ -1115,7 +1228,11 @@ button{
 
 <!-- ================= MOOD ================= -->
 
-<div class="card mood-card small-home-card">
+<div
+    class="card mood-card small-home-card"
+    onclick="openPage('mood-check')"
+    style="cursor:pointer;"
+>
 
     <h3>
         😊 &nbsp; Mood Check
@@ -1163,7 +1280,11 @@ button{
 
 <!-- ================= MEMORIES ================= -->
 
-<div class="card memory-card small-home-card">
+<div
+    class="card memory-card small-home-card"
+    onclick="openPage('memories')"
+    style="cursor:pointer;"
+>
 
     <h3>
         📸 &nbsp; Virtual Memories
@@ -1203,57 +1324,30 @@ button{
 
 <!-- ================= PLAYLIST ================= -->
 
-<div class="card playlist-card small-home-card">
+<div
+    class="card playlist-card small-home-card"
+    onclick="openPage('playlist')"
+    style="cursor:pointer;"
+>
 
     <h3>
         🎵 &nbsp; Our Playlist
     </h3>
 
-    <span 
-    class="card-link"
-    onclick="openPage('playlist')"
->
-    Lihat Semua →
-</span>
+    <span
+        class="card-link"
+        onclick="event.stopPropagation(); openPage('playlist')"
+    >
+        Lihat Semua →
+    </span>
 
     <div
         id="homePlaylistPreview"
         style="margin-top:10px;"
     >
-        <div class="play-row">
 
-            <div class="play-icon">
-                🎵
-            </div>
-
-            <div class="play-info">
-                <strong>
-                    Langit Favoritku
-                </strong>
-
-                <small>
-                    Naura
-                </small>
-            </div>
-
-        </div>
-
-        <div class="play-row">
-
-            <div class="play-icon">
-                🎶
-            </div>
-
-            <div class="play-info">
-                <strong>
-                    I Still Love You
-                </strong>
-
-                <small>
-                    Kaleida
-                </small>
-            </div>
-
+        <div class="empty">
+            Belum ada lagu ♡
         </div>
 
     </div>
@@ -1264,42 +1358,31 @@ button{
 
 <!-- ================= LOVE NOTES ================= -->
 
-<div class="card notes-card small-home-card">
+<div
+    class="card notes-card small-home-card"
+    onclick="openPage('love-notes')"
+    style="cursor:pointer;"
+>
 
     <h3>
         💌 &nbsp; Love Notes
     </h3>
 
-    <span 
-    class="card-link"
-    onclick="openPage('love-notes')"
->
-    Lihat Semua →
-</span>
+    <span
+        class="card-link"
+        onclick="event.stopPropagation(); openPage('love-notes')"
+    >
+        Lihat Semua →
+    </span>
 
     <div
         id="homeNotesPreview"
         class="note-preview"
     >
 
-        <strong>
-            ♡ &nbsp; Untuk kamu
-        </strong>
-
-        <p>
-            Tetap jadi alasan aku tersenyum
-            setiap hari yaa ♡
-        </p>
-
-        <small
-            style="
-                display:block;
-                margin-top:10px;
-                color:#a98b9b;
-            "
-        >
-            15 Apr 2026
-        </small>
+        <div class="empty">
+            Belum ada love note ♡
+        </div>
 
     </div>
 
@@ -1309,87 +1392,64 @@ button{
 
 <!-- ================= SOMEDAY ================= -->
 
-<div class="card someday-card small-home-card">
+<div
+    class="card someday-card small-home-card"
+    onclick="openPage('someday-list')"
+    style="cursor:pointer;"
+>
 
     <h3>
         ⭐ &nbsp; Someday List
     </h3>
 
-    <span 
-    class="card-link"
-    onclick="openPage('someday-list')"
->
-    Lihat Semua →
-</span>
+    <span
+        class="card-link"
+        onclick="event.stopPropagation(); openPage('someday-list')"
+    >
+        Lihat Semua →
+    </span>
 
     <div
         id="homeSomedayPreview"
         class="todo-preview"
     >
 
-        <label>
-            <input type="checkbox">
-            Ketemu langsung ♡
-        </label>
-
-        <label>
-            <input type="checkbox">
-            Foto bareng di tempat yang indah
-        </label>
-
-        <label>
-            <input type="checkbox">
-            Nonton konser bareng
-        </label>
+        <div class="empty">
+            Belum ada someday list ♡
+        </div>
 
     </div>
 
 </div>
 
 
-
 <!-- ================= CHATS ================= -->
 
-<div class="card chats-card small-home-card">
+<div
+    class="card chats-card small-home-card"
+    onclick="openPage('our-chats')"
+    style="cursor:pointer;"
+>
 
     <h3>
         💬 &nbsp; Our Chats
     </h3>
 
-    <span 
-    class="card-link"
-    onclick="openPage('our-chats')"
->
-    Lihat Semua →
-</span>
+    <span
+        class="card-link"
+        onclick="event.stopPropagation(); openPage('our-chats')"
+    >
+        Lihat Semua →
+    </span>
 
     <div
         id="homeChatsPreview"
         class="chat-preview"
     >
 
-        <div class="chat-avatar">
-            💗
+        <div class="empty">
+            Belum ada chat ♡
         </div>
-
-        <div>
-            <strong>
-                Kamu
-            </strong>
-
-            <p>
-                Aku kangen kamu 🥺
-            </p>
-        </div>
-
-        <small
-            style="
-                margin-left:auto;
-                color:#9d8593;
-            "
-        >
-            22:03
-        </small>
 
     </div>
 
