@@ -763,6 +763,39 @@ button{
     flex-direction:column;
     gap:12px;
 }
+#page-love-notes .love-note-item{
+    background:#fff0f6 !important;
+    border:1px solid #f0c8da !important;
+    border-radius:22px !important;
+    padding:22px !important;
+    margin-bottom:15px !important;
+    box-shadow:0 8px 20px rgba(210,92,145,.10) !important;
+}
+
+#page-love-notes .love-note-item > div:first-child{
+    width:48px !important;
+    height:48px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    background:#ffe0ec !important;
+    border-radius:14px !important;
+    font-size:24px !important;
+    margin-bottom:12px !important;
+}
+
+#page-love-notes .love-note-item h3{
+    color:#6f3f59 !important;
+    font-size:18px !important;
+    margin:0 0 7px !important;
+}
+
+#page-love-notes .love-note-item p{
+    color:#8b6879 !important;
+    font-size:14px !important;
+    line-height:1.7 !important;
+    margin:0 !important;
+}
 
 .item{
     background:#fff5fa;
@@ -988,6 +1021,126 @@ button{
 #playlistList .playlist-empty p {
     color: #a47f99 !important;
 }
+
+/* =========================================================
+   MOOD CHECK RESULT (RAPI & CANTIK)
+========================================================= */
+#moodList {
+    margin-top: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+#moodList .mood-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    background: linear-gradient(135deg, #fff8fc, #fff0f7) !important;
+    border: 1px solid #f3c9df !important;
+    border-radius: 22px !important;
+    padding: 20px !important;
+    box-shadow: 0 6px 18px rgba(210, 92, 145, 0.10) !important;
+    transition: 0.25s ease !important;
+}
+
+#moodList .mood-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(210, 92, 145, 0.18) !important;
+}
+
+#moodList .mood-emoji-box {
+    flex-shrink: 0 !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f4a8cb, #cdb9eb) !important;
+    border-radius: 18px !important;
+    font-size: 30px !important;
+}
+
+#moodList .mood-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+#moodList .mood-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+#moodList .mood-label {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #65415f !important;
+}
+
+#moodList .mood-date {
+    font-size: 12px !important;
+    color: #a47f99 !important;
+    background: #fff0f6 !important;
+    padding: 5px 12px !important;
+    border-radius: 20px !important;
+    border: 1px solid #f3c9df !important;
+}
+
+#moodList .mood-text {
+    color: #8b6879 !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    padding: 12px 15px !important;
+    border-radius: 15px !important;
+    border-left: 4px solid #ed75aa !important;
+}
+
+#moodList .mood-delete {
+    flex-shrink: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: #ffe4ef !important;
+    cursor: pointer !important;
+    font-size: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: 0.2s !important;
+    align-self: center !important;
+}
+
+#moodList .mood-delete:hover {
+    background: #ffc9df !important;
+    transform: scale(1.1) !important;
+}
+
+#moodList .mood-empty {
+    text-align: center !important;
+    padding: 35px !important;
+    border-radius: 20px !important;
+    background: #fff8fc !important;
+    border: 1px dashed #e6aecb !important;
+}
+
+#moodList .mood-empty-icon {
+    font-size: 40px !important;
+    margin-bottom: 8px !important;
+}
+
+#moodList .mood-empty p {
+    color: #a47f99 !important;
+    font-size: 14px !important;
+}
+
+</style>
 </style>
 </head>
 
