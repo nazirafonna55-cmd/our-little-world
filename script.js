@@ -203,7 +203,7 @@ function updateDaysTogether() {
 
 
     if (daysTogether) {
-        daysTogether.textContent = days;
+        daysTogether.textContent = days + " Hari ♥";
     }
 
 
@@ -212,7 +212,7 @@ function updateDaysTogether() {
 
 
     if (bigDaysTogether) {
-        bigDaysTogether.textContent = days;
+        bigDaysTogether.textContent = days + " Hari ♥";
     }
 
 
@@ -555,8 +555,8 @@ async function loadLoveToday() {
                 padding:18px;
                 margin-top:12px;
                 border-radius:16px;
-                background:rgba(255,255,255,0.06);
-                border:1px solid rgba(255,255,255,0.1);
+                background:#fff0f7;
+                border:1px solid #f3c9df;
             `;
 
 
@@ -576,6 +576,7 @@ async function loadLoveToday() {
                     <span style="
                         font-size:24px;
                         font-weight:bold;
+                        color:#bc4d86;
                     ">
                         💗 ${record.percentage}%
                     </span>
@@ -583,7 +584,7 @@ async function loadLoveToday() {
                 </div>
 
 
-                <p style="margin-top:10px;">
+                <p style="margin-top:10px;color:#8b6879;">
                     ${
                         record.note
                             ? escapeHTML(record.note)
@@ -600,6 +601,8 @@ async function loadLoveToday() {
                         border:none;
                         border-radius:10px;
                         cursor:pointer;
+                        background:#ffe4ef;
+                        color:#8a3760;
                     "
                 >
                     🗑️ Hapus
@@ -805,47 +808,73 @@ async function loadMoods() {
             );
 
 
-        // =========================
-        // HALAMAN MOOD CHECK
-        // =========================
+        /* =================================
+           HALAMAN MOOD CHECK
+        ================================= */
 
         list.innerHTML = "";
 
 
         if (snapshot.empty) {
 
-            list.innerHTML =
-                "<p>Belum ada mood tersimpan.</p>";
+            list.innerHTML = `
+                <div class="mood-empty">
+                    <div class="mood-empty-icon">🌸</div>
+                    <p>Belum ada catatan mood. Yuk mulai cerita hari ini ♡</p>
+                </div>
+            `;
 
         } else {
 
+            let records = [];
+
             snapshot.forEach(item => {
 
-                const data =
-                    item.data();
+                records.push({
+                    id: item.id,
+                    ...item.data()
+                });
+
+            });
+
+            records.reverse();
+
+            records.forEach(record => {
 
                 list.innerHTML += `
 
-                    <div style="
-                        padding:15px;
-                        margin-top:10px;
-                        border-radius:15px;
-                        background:rgba(255,255,255,.06);
-                    ">
+                    <div class="mood-item">
 
-                        <strong>
-                            ${escapeHTML(data.emoji)}
-                            ${escapeHTML(data.name)}
-                        </strong>
+                        <div class="mood-emoji-box">
+                            ${escapeHTML(record.emoji)}
+                        </div>
 
-                        <p>
-                            ${escapeHTML(data.text)}
-                        </p>
+                        <div class="mood-content">
+
+                            <div class="mood-header">
+
+                                <span class="mood-label">
+                                    ${escapeHTML(record.name)}
+                                </span>
+
+                                <span class="mood-date">
+                                    📅 Hari ini
+                                </span>
+
+                            </div>
+
+                            <p class="mood-text">
+                                ${escapeHTML(record.text)}
+                            </p>
+
+                        </div>
 
                         <button
-                            onclick="deleteMood('${item.id}')"
+                            class="mood-delete"
+                            onclick="deleteMood('${record.id}')"
+                            title="Hapus mood"
                         >
-                            🗑️ Hapus
+                            🗑️
                         </button>
 
                     </div>
@@ -857,9 +886,9 @@ async function loadMoods() {
         }
 
 
-        // =========================
-        // HOME
-        // =========================
+        /* =================================
+           HOME PREVIEW
+        ================================= */
 
         if (!homePreview) return;
 
@@ -1047,16 +1076,13 @@ async function loadTimeStories() {
 
         list.innerHTML += `
 
-            <div style="
-                padding:15px;
-                margin-top:10px;
-            ">
+            <div class="item">
 
                 <h3>
                     ${escapeHTML(data.title)}
                 </h3>
 
-                <p>
+                <p style="color:#a47f99;font-size:13px;">
                     ${escapeHTML(data.date || "")}
                 </p>
 
@@ -1065,6 +1091,8 @@ async function loadTimeStories() {
                 </p>
 
                 <button
+                    class="playlist-delete"
+                    style="position:static;margin-top:10px;width:auto;padding:8px 14px;border-radius:12px;"
                     onclick="deleteTimeStory('${item.id}')"
                 >
                     🗑️ Hapus
@@ -1205,10 +1233,7 @@ async function loadMemories() {
 
         list.innerHTML += `
 
-            <div style="
-                padding:15px;
-                margin-top:10px;
-            ">
+            <div class="item">
 
                 ${
                     data.image
@@ -1218,6 +1243,7 @@ async function loadMemories() {
                             style="
                                 max-width:200px;
                                 border-radius:15px;
+                                margin-bottom:10px;
                             "
                         >
                     `
@@ -1229,7 +1255,7 @@ async function loadMemories() {
                     ${escapeHTML(data.title)}
                 </h3>
 
-                <p>
+                <p style="color:#a47f99;font-size:13px;">
                     ${escapeHTML(data.date || "")}
                 </p>
 
@@ -1238,6 +1264,8 @@ async function loadMemories() {
                 </p>
 
                 <button
+                    class="playlist-delete"
+                    style="position:static;margin-top:10px;width:auto;padding:8px 14px;border-radius:12px;"
                     onclick="deleteMemory('${item.id}')"
                 >
                     🗑️ Hapus
@@ -1729,12 +1757,7 @@ async function loadLoveNotes() {
 
                     <div class="love-note-item">
 
-                        <div
-                            style="
-                                font-size:32px;
-                                margin-bottom:10px;
-                            "
-                        >
+                        <div>
                             💌
                         </div>
 
@@ -1752,7 +1775,7 @@ async function loadLoveNotes() {
                                 deleteLoveNote('${item.id}')
                             "
                         >
-                            🗑️
+                            🗑️ Hapus
                         </button>
 
                     </div>
@@ -1839,6 +1862,35 @@ async function loadLoveNotes() {
 
 }
 
+// ======================================================
+// DELETE LOVE NOTE
+// ======================================================
+
+async function deleteLoveNote(id) {
+
+    if (!confirm("Hapus Love Note ini? 💌")) {
+        return;
+    }
+
+    try {
+
+        await deleteDoc(
+            doc(db, "loveNotes", id)
+        );
+
+        alert("Love Note berhasil dihapus 💗");
+
+        await loadLoveNotes();
+
+    } catch (error) {
+
+        console.error("Gagal menghapus Love Note:", error);
+
+        alert("Gagal menghapus Love Note 😭");
+
+    }
+
+}
 
 // ======================================================
 // SOMEDAY LIST
@@ -1922,12 +1974,19 @@ async function loadSomeday() {
         const data = item.data();
 
         list.innerHTML += `
-            <div style="
-                padding:12px;
-                margin-top:10px;
+            <div class="item" style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
             ">
 
-                <label>
+                <label style="
+                    display:flex;
+                    align-items:center;
+                    gap:10px;
+                    cursor:pointer;
+                ">
 
                     <input
                         type="checkbox"
@@ -1945,12 +2004,27 @@ async function loadSomeday() {
                         "
                     >
 
-                    ${escapeHTML(data.text)}
+                    <span style="
+                        ${
+                            data.completed
+                            ? "text-decoration:line-through;opacity:.6;"
+                            : ""
+                        }
+                    ">
+                        ${escapeHTML(data.text)}
+                    </span>
 
                 </label>
 
                 <button
                     onclick="deleteSomeday('${item.id}')"
+                    style="
+                        border:none;
+                        background:#ffe4ef;
+                        padding:6px 10px;
+                        border-radius:10px;
+                        cursor:pointer;
+                    "
                 >
                     🗑️
                 </button>
@@ -2112,6 +2186,7 @@ async function loadChats() {
 
 
     // =========================
+        // =========================
     // TAMPILKAN DI HALAMAN CHATS
     // =========================
 
@@ -2120,10 +2195,7 @@ async function loadChats() {
         const data = item.data();
 
         list.innerHTML += `
-            <div style="
-                padding:15px;
-                margin-top:10px;
-            ">
+            <div class="item">
 
                 <strong>
                     💬 ${escapeHTML(data.name)}
@@ -2133,7 +2205,7 @@ async function loadChats() {
                     ${escapeHTML(data.message)}
                 </p>
 
-                <small>
+                <small style="color:#a47f99;">
                     ${escapeHTML(data.time || "")}
                 </small>
 
@@ -2141,6 +2213,13 @@ async function loadChats() {
 
                 <button
                     onclick="deleteChat('${item.id}')"
+                    style="
+                        border:none;
+                        background:#ffe4ef;
+                        padding:8px 14px;
+                        border-radius:10px;
+                        cursor:pointer;
+                    "
                 >
                     🗑️ Hapus
                 </button>
@@ -2411,7 +2490,7 @@ window.addLoveNote =
 window.saveLoveNote =
     addLoveNote;
 
-
+window.deleteLoveNote = deleteLoveNote;
 
 
 // ======================================================
