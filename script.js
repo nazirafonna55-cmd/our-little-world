@@ -276,7 +276,7 @@ function updateLove() {
 
 
     if (number) {
-        number.textContent = value;
+        number.textContent = value + "%";
     }
 
 
@@ -791,6 +791,8 @@ async function loadMoods() {
     const list =
         document.getElementById("moodList");
 
+    const homePreview =
+        document.getElementById("homeMoodPreview");
 
     if (!list) return;
 
@@ -803,6 +805,10 @@ async function loadMoods() {
             );
 
 
+        // =========================
+        // HALAMAN MOOD CHECK
+        // =========================
+
         list.innerHTML = "";
 
 
@@ -811,8 +817,66 @@ async function loadMoods() {
             list.innerHTML =
                 "<p>Belum ada mood tersimpan.</p>";
 
+        } else {
+
+            snapshot.forEach(item => {
+
+                const data =
+                    item.data();
+
+                list.innerHTML += `
+
+                    <div style="
+                        padding:15px;
+                        margin-top:10px;
+                        border-radius:15px;
+                        background:rgba(255,255,255,.06);
+                    ">
+
+                        <strong>
+                            ${escapeHTML(data.emoji)}
+                            ${escapeHTML(data.name)}
+                        </strong>
+
+                        <p>
+                            ${escapeHTML(data.text)}
+                        </p>
+
+                        <button
+                            onclick="deleteMood('${item.id}')"
+                        >
+                            🗑️ Hapus
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        // =========================
+        // HOME
+        // =========================
+
+        if (!homePreview) return;
+
+
+        if (snapshot.empty) {
+
+            homePreview.innerHTML = `
+                <div class="empty">
+                    Belum ada mood ♡
+                </div>
+            `;
+
             return;
         }
+
+
+        const moods = [];
 
 
         snapshot.forEach(item => {
@@ -820,47 +884,51 @@ async function loadMoods() {
             const data =
                 item.data();
 
-
-            list.innerHTML += `
+            moods.push(`
 
                 <div style="
-                    padding:15px;
-                    margin-top:10px;
-                    border-radius:15px;
-                    background:rgba(255,255,255,.06);
+                    padding:8px 0;
+                    border-bottom:1px solid #f0d5df;
                 ">
 
-                    <strong>
+                    <strong style="
+                        font-size:14px;
+                    ">
                         ${escapeHTML(data.emoji)}
                         ${escapeHTML(data.name)}
                     </strong>
 
-                    <p>
+                    <p style="
+                        margin:4px 0 0;
+                        font-size:13px;
+                        color:#777;
+                    ">
                         ${escapeHTML(data.text)}
                     </p>
 
-                    <button
-                        onclick="deleteMood('${item.id}')"
-                    >
-                        🗑️ Hapus
-                    </button>
-
                 </div>
 
-            `;
+            `);
 
         });
+
+
+        homePreview.innerHTML =
+            moods.slice(0, 3).join("");
+
 
     }
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Gagal memuat Mood Check:",
+            error
+        );
 
     }
 
 }
-
 
 async function deleteMood(id) {
 
@@ -1281,69 +1349,246 @@ async function loadPlaylists() {
     const list =
         document.getElementById("playlistList");
 
+    const homePreview =
+        document.getElementById("homePlaylistPreview");
 
-    if (!list) return;
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "playlists")
+            );
+
+        /* =================================
+           HALAMAN PLAYLIST
+        ================================= */
+
+        if (list) {
+
+            list.innerHTML = "";
+
+            if (snapshot.empty) {
+
+                list.innerHTML = `
+                    <div class="playlist-empty">
+                        <div class="playlist-empty-icon">
+                            🎧
+                        </div>
+
+                        <h3>
+                            Belum ada lagu ♡
+                        </h3>
+
+                        <p>
+                            Tambahkan lagu yang punya cerita untuk kita.
+                        </p>
+                    </div>
+                `;
+
+            } else {
+
+                snapshot.forEach(item => {
+
+                    const data = item.data();
+
+                    list.innerHTML += `
+
+                        <div class="playlist-item">
+
+                            <div class="playlist-cover">
+                                🎵
+                            </div>
+
+                            <div class="playlist-info">
+
+                                <h3>
+                                    ${escapeHTML(data.title)}
+                                </h3>
+
+                                <p>
+                                    ${escapeHTML(
+                                        data.artist || "Artis tidak diketahui"
+                                    )}
+                                </p>
+
+                                ${
+                                    data.link
+                                    ? `
+                                        <a
+                                            class="playlist-open"
+                                            href="${escapeHTML(data.link)}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            ▶ Buka di Spotify
+                                        </a>
+                                    `
+                                    : `
+                                        <span class="playlist-no-link">
+                                            ♡ Belum ada link lagu
+                                        </span>
+                                    `
+                                }
+
+                            </div>
+
+                            <button
+                                class="playlist-delete"
+                                onclick="deletePlaylist('${item.id}')"
+                                title="Hapus lagu"
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+        }
 
 
-    const snapshot =
-        await getDocs(
-            collection(db, "playlists")
+        /* =================================
+           PREVIEW DI HOME
+        ================================= */
+
+        if (homePreview) {
+
+            homePreview.innerHTML = "";
+
+            if (snapshot.empty) {
+
+                homePreview.innerHTML = `
+                    <div class="empty">
+                        Belum ada lagu ♡
+                    </div>
+                `;
+
+            } else {
+
+                let count = 0;
+
+                snapshot.forEach(item => {
+
+                    if (count >= 3) return;
+
+                    const data = item.data();
+
+                    homePreview.innerHTML += `
+
+                        <div
+                            style="
+                                display:flex;
+                                align-items:center;
+                                gap:12px;
+                                padding:12px;
+                                margin-top:10px;
+                                border-radius:15px;
+                                background:#fff5fa;
+                                border:1px solid #f3d5e4;
+                            "
+                        >
+
+                            <div
+                                style="
+                                    width:42px;
+                                    height:42px;
+                                    min-width:42px;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    border-radius:12px;
+                                    background:linear-gradient(
+                                        135deg,
+                                        #f4afd0,
+                                        #d5c2ed
+                                    );
+                                    font-size:20px;
+                                "
+                            >
+                                🎵
+                            </div>
+
+                            <div
+                                style="
+                                    flex:1;
+                                    min-width:0;
+                                "
+                            >
+
+                                <div
+                                    style="
+                                        font-weight:700;
+                                        color:#65415f;
+                                        white-space:nowrap;
+                                        overflow:hidden;
+                                        text-overflow:ellipsis;
+                                    "
+                                >
+                                    ${escapeHTML(data.title)}
+                                </div>
+
+                                <div
+                                    style="
+                                        font-size:12px;
+                                        color:#98768f;
+                                        margin-top:3px;
+                                    "
+                                >
+                                    ${escapeHTML(
+                                        data.artist || "Artis"
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    count++;
+
+                });
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Gagal memuat playlist:",
+            error
         );
 
+        if (list) {
 
-    list.innerHTML = "";
+            list.innerHTML = `
+                <div class="empty">
+                    Gagal memuat playlist 😭
+                </div>
+            `;
 
+        }
 
-    snapshot.forEach(item => {
+        if (homePreview) {
 
-        const data =
-            item.data();
+            homePreview.innerHTML = `
+                <div class="empty">
+                    Playlist belum bisa dimuat 😭
+                </div>
+            `;
 
+        }
 
-        list.innerHTML += `
-
-            <div style="
-                padding:15px;
-                margin-top:10px;
-            ">
-
-                <h3>
-                    🎵 ${escapeHTML(data.title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(data.artist || "")}
-                </p>
-
-                ${
-                    data.link
-                    ? `
-                        <a
-                            href="${escapeHTML(data.link)}"
-                            target="_blank"
-                        >
-                            ▶️ Buka Lagu
-                        </a>
-                    `
-                    : ""
-                }
-
-                <br><br>
-
-                <button
-                    onclick="deletePlaylist('${item.id}')"
-                >
-                    🗑️ Hapus
-                </button>
-
-            </div>
-
-        `;
-
-    });
+    }
 
 }
-
 
 async function deletePlaylist(id) {
 
@@ -1433,66 +1678,164 @@ async function loadLoveNotes() {
     const list =
         document.getElementById("loveNotesList");
 
+    const homePreview =
+        document.getElementById("homeNotesPreview");
 
     if (!list) return;
 
+    try {
 
-    const snapshot =
-        await getDocs(
-            collection(db, "loveNotes")
+        const snapshot =
+            await getDocs(
+                collection(db, "loveNotes")
+            );
+
+
+        // =========================
+        // HALAMAN LOVE NOTES
+        // =========================
+
+        list.innerHTML = "";
+
+
+        if (snapshot.empty) {
+
+            list.innerHTML = `
+                <div class="playlist-empty">
+
+                    <div class="playlist-empty-icon">
+                        💌
+                    </div>
+
+                    <h3>
+                        Belum ada Love Note
+                    </h3>
+
+                    <p>
+                        Tulis pesan manis untuk pasanganmu ♡
+                    </p>
+
+                </div>
+            `;
+
+        } else {
+
+            snapshot.forEach(item => {
+
+                const data =
+                    item.data();
+
+                list.innerHTML += `
+
+                    <div class="love-note-item">
+
+                        <div
+                            style="
+                                font-size:32px;
+                                margin-bottom:10px;
+                            "
+                        >
+                            💌
+                        </div>
+
+                        <h3>
+                            ${escapeHTML(data.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(data.text)}
+                        </p>
+
+                        <button
+                            class="love-note-delete"
+                            onclick="
+                                deleteLoveNote('${item.id}')
+                            "
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        // =========================
+        // HOME
+        // =========================
+
+        if (!homePreview) return;
+
+
+        if (snapshot.empty) {
+
+            homePreview.innerHTML = `
+                <div class="empty">
+                    Belum ada Love Note ♡
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const notes = [];
+
+
+        snapshot.forEach(item => {
+
+            const data =
+                item.data();
+
+            notes.push(`
+
+                <div
+                    style="
+                        padding:8px 0;
+                        border-bottom:1px solid #f0d5df;
+                    "
+                >
+
+                    <strong>
+                        💌
+                        ${escapeHTML(data.title)}
+                    </strong>
+
+                    <p
+                        style="
+                            margin:4px 0 0;
+                            font-size:13px;
+                            color:#777;
+                        "
+                    >
+                        ${escapeHTML(data.text)}
+                    </p>
+
+                </div>
+
+            `);
+
+        });
+
+
+        homePreview.innerHTML =
+            notes.slice(0, 3).join("");
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Gagal memuat Love Notes:",
+            error
         );
 
-
-    list.innerHTML = "";
-
-
-    snapshot.forEach(item => {
-
-        const data =
-            item.data();
-
-
-        list.innerHTML += `
-
-            <div style="
-                padding:15px;
-                margin-top:10px;
-            ">
-
-                <h3>
-                    💌 ${escapeHTML(data.title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(data.text)}
-                </p>
-
-                <button
-                    onclick="deleteLoveNote('${item.id}')"
-                >
-                    🗑️ Hapus
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-}
-
-
-async function deleteLoveNote(id) {
-
-    if (!confirm("Hapus Love Note ini?")) return;
-
-
-    await deleteDoc(
-        doc(db, "loveNotes", id)
-    );
-
-
-    loadLoveNotes();
+    }
 
 }
 
@@ -1557,27 +1900,28 @@ async function loadSomeday() {
     const list =
         document.getElementById("somedayList");
 
+    const homePreview =
+        document.getElementById("homeSomedayPreview");
 
     if (!list) return;
-
 
     const snapshot =
         await getDocs(
             collection(db, "someday")
         );
 
-
     list.innerHTML = "";
 
 
+    // =========================
+    // TAMPILKAN DI HALAMAN SOMEDAY
+    // =========================
+
     snapshot.forEach(item => {
 
-        const data =
-            item.data();
-
+        const data = item.data();
 
         list.innerHTML += `
-
             <div style="
                 padding:12px;
                 margin-top:10px;
@@ -1605,7 +1949,6 @@ async function loadSomeday() {
 
                 </label>
 
-
                 <button
                     onclick="deleteSomeday('${item.id}')"
                 >
@@ -1613,10 +1956,52 @@ async function loadSomeday() {
                 </button>
 
             </div>
-
         `;
 
     });
+
+
+    // =========================
+    // TAMPILKAN DI HOME
+    // =========================
+
+    if (!homePreview) return;
+
+    if (snapshot.empty) {
+
+        homePreview.innerHTML = `
+            <div class="empty">
+                Belum ada someday list ♡
+            </div>
+        `;
+
+        return;
+    }
+
+    const items = [];
+
+    snapshot.forEach(item => {
+
+        const data = item.data();
+
+        items.push(`
+            <div style="
+                padding:8px 0;
+                border-bottom:1px solid #f0d5df;
+                font-size:13px;
+            ">
+
+                ${data.completed ? "✅" : "⭐"}
+
+                ${escapeHTML(data.text)}
+
+            </div>
+        `);
+
+    });
+
+    homePreview.innerHTML =
+        items.slice(0, 3).join("");
 
 }
 
@@ -1654,68 +2039,57 @@ async function deleteSomeday(id) {
 
 async function addChat() {
 
-    const name =
-        document
-            .getElementById("chatName")
-            .value
-            .trim();
+    const nameInput = document.getElementById("chatName");
+    const messageInput = document.getElementById("chatMessage");
+    const timeInput = document.getElementById("chatTime");
 
-
-    const message =
-        document
-            .getElementById("chatMessage")
-            .value
-            .trim();
-
-
-    const time =
-        document
-            .getElementById("chatTime")
-            .value;
-
-
-    if (!name || !message) {
-
-        alert(
-            "Isi nama dan pesan dulu 💬"
-        );
-
+    if (!nameInput || !messageInput || !timeInput) {
+        alert("Kolom chat tidak ditemukan 😭");
         return;
     }
 
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+    const time = timeInput.value;
+
+    if (!name) {
+        alert("Isi nama dulu 💗");
+        return;
+    }
+
+    if (!message) {
+        alert("Isi pesan dulu 💬");
+        return;
+    }
 
     try {
 
-        await addDoc(
-            collection(db, "chats"),
-            {
-                name,
-                message,
-                time,
-                createdAt: serverTimestamp()
-            }
-        );
+        console.log("Mencoba menyimpan chat...");
 
+        await addDoc(collection(db, "chats"), {
+            name: name,
+            message: message,
+            time: time,
+            createdAt: serverTimestamp()
+        });
 
-        document.getElementById("chatName").value = "";
-        document.getElementById("chatMessage").value = "";
-        document.getElementById("chatTime").value = "";
+        alert("Chat berhasil disimpan 💕");
 
+        nameInput.value = "";
+        messageInput.value = "";
+        timeInput.value = "";
 
-        loadChats();
+        await loadChats();
 
-    }
+    } catch (error) {
 
-    catch (error) {
-
-        console.error(error);
+        console.error("ERROR CHAT:", error);
 
         alert(
-            "Gagal menyimpan chat 😭"
+            "Gagal menyimpan chat 😭\n\n" +
+            error.message
         );
-
     }
-
 }
 
 
@@ -1724,27 +2098,28 @@ async function loadChats() {
     const list =
         document.getElementById("chatList");
 
+    const homePreview =
+        document.getElementById("homeChatsPreview");
 
     if (!list) return;
-
 
     const snapshot =
         await getDocs(
             collection(db, "chats")
         );
 
-
     list.innerHTML = "";
 
 
+    // =========================
+    // TAMPILKAN DI HALAMAN CHATS
+    // =========================
+
     snapshot.forEach(item => {
 
-        const data =
-            item.data();
-
+        const data = item.data();
 
         list.innerHTML += `
-
             <div style="
                 padding:15px;
                 margin-top:10px;
@@ -1771,10 +2146,59 @@ async function loadChats() {
                 </button>
 
             </div>
-
         `;
 
     });
+
+
+    // =========================
+    // TAMPILKAN DI HOME
+    // =========================
+
+    if (!homePreview) return;
+
+    if (snapshot.empty) {
+
+        homePreview.innerHTML = `
+            <div class="empty">
+                Belum ada chat ♡
+            </div>
+        `;
+
+        return;
+    }
+
+    const chats = [];
+
+    snapshot.forEach(item => {
+
+        const data = item.data();
+
+        chats.push(`
+            <div style="
+                padding:8px 0;
+                border-bottom:1px solid #f0d5df;
+            ">
+
+                <strong style="font-size:13px;">
+                    💬 ${escapeHTML(data.name)}
+                </strong>
+
+                <p style="
+                    margin:4px 0 0;
+                    font-size:13px;
+                    color:#777;
+                ">
+                    ${escapeHTML(data.message)}
+                </p>
+
+            </div>
+        `);
+
+    });
+
+    homePreview.innerHTML =
+        chats.slice(0, 3).join("");
 
 }
 
@@ -1987,8 +2411,7 @@ window.addLoveNote =
 window.saveLoveNote =
     addLoveNote;
 
-window.deleteLoveNote =
-    deleteLoveNote;
+
 
 
 // ======================================================
