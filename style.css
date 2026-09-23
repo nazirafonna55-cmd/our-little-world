@@ -1211,209 +1211,267 @@ footer {
 ===================================================== */
 
 
-/* =====================================================
-   LOVE NOTES
-===================================================== */
+/* =========================================================
+   LOVE NOTES - CUTE PINK
+========================================================= */
 
-#loveNotesList {
-    margin-top: 25px;
+#page-love-notes .page-wrapper {
+    max-width: 1050px;
+    margin: auto;
+    padding: 35px 25px 60px;
 }
 
-.love-note-item {
-    position: relative;
-
-    padding: 18px 50px 18px 18px;
-    margin-bottom: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #fff8fc,
-        #fff0f7
-    );
-
-    border: 1px solid #f3d5e4;
-    border-radius: 20px;
-
-    box-shadow:
-        0 5px 15px rgba(210, 92, 145, 0.08);
-
-    transition: 0.25s ease;
+/* JUDUL */
+#page-love-notes .page-title {
+    color: #713650;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
-.love-note-item:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px rgba(210, 92, 145, 0.15);
-
-    border-color: #eaa4c5;
+#page-love-notes .page-subtitle {
+    color: #a77d91;
+    font-size: 14px;
+    margin-bottom: 25px;
 }
 
-.love-note-item h3 {
-    margin: 0 0 7px;
-
-    font-size: 18px;
-    color: #5f4160;
+/* KARTU UTAMA */
+#page-love-notes .big-page-card {
+    background: #fffafb;
+    border: 1px solid #f1d6e2;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 12px 35px rgba(190, 100, 145, .10);
 }
 
-.love-note-item p {
-    margin: 0;
+/* LABEL */
+#page-love-notes .form-group label {
+    display: block;
+    color: #74465d;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
 
+/* INPUT */
+#page-love-notes #noteTitle {
+    width: 100%;
+    padding: 15px 17px;
+    border: 1px solid #efd6e1;
+    border-radius: 15px;
+    background: #fff;
+    color: #654457;
+    font-size: 14px;
+    outline: none;
+    transition: .2s;
+}
+
+#page-love-notes #noteTitle:focus {
+    border-color: #e987ad;
+    box-shadow: 0 0 0 4px rgba(233,135,173,.10);
+}
+
+/* TEXTAREA */
+#page-love-notes #noteText {
+    width: 100%;
+    min-height: 145px;
+    padding: 16px 17px;
+    border: 1px solid #efd6e1;
+    border-radius: 17px;
+    background: #fff;
+    color: #654457;
     font-size: 14px;
     line-height: 1.7;
-
-    color: #806477;
-
-    white-space: pre-wrap;
+    outline: none;
+    resize: vertical;
+    transition: .2s;
 }
 
-.love-note-delete {
+#page-love-notes #noteText:focus {
+    border-color: #e987ad;
+    box-shadow: 0 0 0 4px rgba(233,135,173,.10);
+}
+
+#page-love-notes #noteTitle::placeholder,
+#page-love-notes #noteText::placeholder {
+    color: #b79aaa;
+}
+
+/* TOMBOL SIMPAN */
+#page-love-notes .save-button {
+    border: none;
+    padding: 13px 23px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f394b8, #e572a0);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(225,96,145,.18);
+    transition: .25s;
+}
+
+#page-love-notes .save-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(225,96,145,.25);
+}
+
+/* BAGIAN LOVE NOTES */
+#page-love-notes #loveNotesList {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #f1dce6;
+}
+
+/* JUDUL BAGIAN */
+#page-love-notes #loveNotesList::before {
+    content: "💗  Love Notes";
+    display: block;
+    color: #713650;
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* =========================================================
+   KARTU LOVE NOTE
+   INI YANG PALING PENTING
+========================================================= */
+
+#page-love-notes #loveNotesList .love-note-item {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        #fff4f8,
+        #fffafd
+    );
+    border: 1px solid #f0d5e1;
+    border-radius: 22px;
+    padding: 22px 55px 22px 24px;
+    margin-bottom: 15px;
+    min-height: 125px;
+    box-shadow: 0 7px 20px rgba(210,92,145,.07);
+    transition: .25s;
+}
+
+/* HOVER KARTU */
+#page-love-notes #loveNotesList .love-note-item:hover {
+    transform: translateY(-3px);
+    border-color: #e8b6cb;
+    box-shadow: 0 12px 25px rgba(210,92,145,.12);
+}
+
+/* ICON SURAT */
+#page-love-notes #loveNotesList .love-note-item > div:first-child {
+    width: 48px;
+    height: 48px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: #ffe6f0;
+    border-radius: 15px;
+    font-size: 24px !important;
+    margin-bottom: 12px !important;
+}
+
+/* JUDUL NOTE */
+#page-love-notes #loveNotesList .love-note-item h3 {
+    color: #674257;
+    font-size: 17px;
+    margin: 0 0 6px;
+}
+
+/* ISI NOTE */
+#page-love-notes #loveNotesList .love-note-item p {
+    color: #856879;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* TOMBOL HAPUS */
+#page-love-notes #loveNotesList .love-note-delete {
     position: absolute;
-
-    right: 15px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
+    right: 16px;
+    top: 16px;
     width: 35px;
     height: 35px;
-
+    padding: 0;
+    margin: 0;
     border: none;
     border-radius: 50%;
-
-    background: white;
-
+    background: #fff;
+    color: #d35b8b;
+    font-size: 14px;
     cursor: pointer;
-
-    font-size: 15px;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,0.08);
-
-    transition: 0.2s;
+    box-shadow: 0 3px 10px rgba(160,90,120,.10);
+    transition: .2s;
 }
 
-.love-note-delete:hover {
-    background: #ffe1eb;
-
-    transform:
-        translateY(-50%)
-        scale(1.08);
+#page-love-notes #loveNotesList .love-note-delete:hover {
+    background: #ffe0eb;
+    transform: scale(1.08);
 }
 
+/* =========================================================
+   BELUM ADA LOVE NOTE
+========================================================= */
 
-/* =====================================================
-   MEMORIES
-===================================================== */
-
-#memoryList {
-    margin-top: 25px;
+#page-love-notes #loveNotesList .playlist-empty {
+    background: #fff7fb;
+    border: 1px dashed #e5b7cb;
+    border-radius: 22px;
+    padding: 35px 25px;
+    text-align: center;
+    color: #a67e91;
 }
 
-.memory-item {
-    position: relative;
-
-    padding: 18px 50px 18px 18px;
-    margin-bottom: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #f5fffc,
-        #ffffff
-    );
-
-    border: 1px solid #d9eee8;
-    border-radius: 20px;
-
-    box-shadow:
-        0 5px 15px rgba(90, 150, 135, 0.08);
-
-    transition: 0.25s ease;
+#page-love-notes #loveNotesList .playlist-empty-icon {
+    font-size: 42px;
+    margin-bottom: 8px;
 }
 
-.memory-item:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px rgba(90, 150, 135, 0.14);
+#page-love-notes #loveNotesList .playlist-empty h3 {
+    color: #74435b;
+    margin-bottom: 5px;
 }
 
-.memory-item h3 {
-    margin: 0 0 7px;
-
-    font-size: 18px;
-    color: #4e685f;
+#page-love-notes #loveNotesList .playlist-empty p {
+    font-size: 13px;
+    color: #a48696;
 }
 
-.memory-item p {
-    margin: 0;
-
-    font-size: 14px;
-    line-height: 1.6;
-
-    color: #71877f;
-}
-
-.memory-item small {
+/* PEMANIS BAWAH */
+#page-love-notes .big-page-card::after {
+    content: "──────  ♥  ──────";
     display: block;
-
-    margin-top: 8px;
-
-    color: #9aaca6;
-    font-size: 12px;
-}
-
-
-/* =====================================================
-   OUR TIME
-===================================================== */
-
-#timeStoryList {
-    margin-top: 25px;
-}
-
-.time-story-item {
-    position: relative;
-
-    padding: 18px 50px 18px 18px;
-    margin-bottom: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #f5f1ff,
-        #ffffff
-    );
-
-    border: 1px solid #e1daf5;
-    border-radius: 20px;
-
-    box-shadow:
-        0 5px 15px rgba(120, 100, 170, 0.08);
-
-    transition: 0.25s ease;
-}
-
-.time-story-item:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px rgba(120, 100, 170, 0.14);
-}
-
-.time-story-item h3 {
-    margin: 0 0 7px;
-
-    font-size: 18px;
-    color: #5e517d;
-}
-
-.time-story-item p {
-    margin: 0;
-
+    text-align: center;
+    margin-top: 28px;
+    color: #e59ab8;
     font-size: 14px;
-    line-height: 1.6;
+    letter-spacing: 2px;
+}
 
-    color: #766c8d;
+/* MOBILE */
+@media (max-width: 600px) {
+
+    #page-love-notes .page-wrapper {
+        padding: 25px 15px 45px;
+    }
+
+    #page-love-notes .big-page-card {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    #page-love-notes .page-title {
+        font-size: 27px;
+    }
+
+    #page-love-notes #loveNotesList .love-note-item {
+        padding: 20px 48px 20px 20px;
+    }
+
 }
 
 
@@ -1802,4 +1860,215 @@ footer {
         padding: 14px;
     }
 
+}
+
+/* =====================================================
+   LOVE NOTES - TAMPILAN BARU
+===================================================== */
+
+#page-love-notes {
+    background: #fff5f9 !important;
+}
+
+#page-love-notes .page-wrapper {
+    max-width: 1050px !important;
+    margin: 0 auto !important;
+    padding: 35px 25px 60px !important;
+}
+
+#page-love-notes .page-title {
+    color: #713650 !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+}
+
+#page-love-notes .page-subtitle {
+    color: #a77d91 !important;
+    margin-bottom: 25px !important;
+}
+
+/* KARTU UTAMA */
+
+#page-love-notes .big-page-card {
+    background: #fffafb !important;
+    border: 1px solid #f0d2df !important;
+    border-radius: 28px !important;
+    padding: 32px !important;
+    box-shadow: 0 12px 35px rgba(190,100,145,.12) !important;
+}
+
+/* LABEL */
+
+#page-love-notes .form-group label {
+    color: #74465d !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+}
+
+/* INPUT */
+
+#page-love-notes #noteTitle {
+    width: 100% !important;
+    padding: 15px 17px !important;
+    border: 1px solid #efd6e1 !important;
+    border-radius: 15px !important;
+    background: white !important;
+    color: #654457 !important;
+    outline: none !important;
+}
+
+#page-love-notes #noteTitle:focus {
+    border-color: #e987ad !important;
+    box-shadow: 0 0 0 4px rgba(233,135,173,.10) !important;
+}
+
+/* TEXTAREA */
+
+#page-love-notes #noteText {
+    width: 100% !important;
+    min-height: 160px !important;
+    padding: 16px 17px !important;
+    border: 1px solid #efd6e1 !important;
+    border-radius: 17px !important;
+    background: white !important;
+    color: #654457 !important;
+    line-height: 1.7 !important;
+    outline: none !important;
+    resize: vertical !important;
+}
+
+#page-love-notes #noteText:focus {
+    border-color: #e987ad !important;
+    box-shadow: 0 0 0 4px rgba(233,135,173,.10) !important;
+}
+
+/* TOMBOL SIMPAN */
+
+#page-love-notes .save-button {
+    border: none !important;
+    padding: 13px 25px !important;
+    border-radius: 30px !important;
+    background: linear-gradient(135deg,#f394b8,#e572a0) !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow: 0 7px 18px rgba(225,96,145,.18) !important;
+}
+
+/* LIST LOVE NOTE */
+
+#page-love-notes #loveNotesList {
+    margin-top: 35px !important;
+    padding-top: 25px !important;
+    border-top: 1px solid #f1dce6 !important;
+}
+
+/* JUDUL LIST */
+
+#page-love-notes #loveNotesList::before {
+    content: "💗 Love Notes" !important;
+    display: block !important;
+    color: #713650 !important;
+    font-size: 21px !important;
+    font-weight: bold !important;
+    margin-bottom: 18px !important;
+}
+
+/* KARTU NOTE */
+
+#page-love-notes .love-note-item {
+    position: relative !important;
+    background: linear-gradient(135deg,#fff3f8,#fffafd) !important;
+    border: 1px solid #f0d5e1 !important;
+    border-radius: 22px !important;
+    padding: 22px 60px 22px 24px !important;
+    margin-bottom: 15px !important;
+    min-height: 125px !important;
+    box-shadow: 0 7px 20px rgba(210,92,145,.08) !important;
+}
+
+/* ICON SURAT */
+
+#page-love-notes .love-note-item > div:first-child {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ffe6f0 !important;
+    border-radius: 15px !important;
+    font-size: 24px !important;
+    margin-bottom: 12px !important;
+}
+
+/* JUDUL NOTE */
+
+#page-love-notes .love-note-item h3 {
+    color: #674257 !important;
+    font-size: 17px !important;
+    margin: 0 0 6px !important;
+}
+
+/* ISI NOTE */
+
+#page-love-notes .love-note-item p {
+    color: #856879 !important;
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+}
+
+/* TOMBOL HAPUS */
+
+#page-love-notes .love-note-delete {
+    position: absolute !important;
+    right: 16px !important;
+    top: 16px !important;
+    width: 35px !important;
+    height: 35px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: white !important;
+    color: #d35b8b !important;
+    cursor: pointer !important;
+    box-shadow: 0 3px 10px rgba(160,90,120,.10) !important;
+}
+
+/* EMPTY */
+
+#page-love-notes .playlist-empty {
+    background: #fff7fb !important;
+    border: 1px dashed #e5b7cb !important;
+    border-radius: 22px !important;
+    padding: 35px 25px !important;
+    text-align: center !important;
+}
+
+#page-love-notes .playlist-empty-icon {
+    font-size: 42px !important;
+    margin-bottom: 8px !important;
+}
+
+#page-love-notes .playlist-empty h3 {
+    color: #74435b !important;
+}
+
+#page-love-notes .playlist-empty p {
+    color: #a48696 !important;
+}
+
+/* PEMISAH BAWAH */
+
+#page-love-notes .big-page-card::after {
+    content: "────── ♥ ──────" !important;
+    display: block !important;
+    text-align: center !important;
+    margin-top: 30px !important;
+    color: #e59ab8 !important;
+    letter-spacing: 2px !important;
 }
